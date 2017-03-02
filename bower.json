@@ -1,0 +1,24 @@
+{
+  "name": "grability-test",
+  "description": "Prueba tecnica",
+  "main": "index.js",
+  "authors": [
+    "Baldassare <baldassarecinao@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/bcinao/grability-test",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap-sass-official": "~3.3.4",
+    "font-awesome": "~4.3.0",
+    "angular": "~1.6.2",
+    "normalize.css": "~3.0.3"
+  }
+}
