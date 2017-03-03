@@ -1,0 +1,30 @@
+header {
+  height: 80px;
+  background-color: #2d2727;
+  box-shadow: 0 2px 10px rgba(45,39,39,0.5);
+
+  .logo {
+    padding: 10px 0;
+  }
+
+  .box-search {
+    padding: 15px 0;
+
+    .input-search {
+      background-color: #fafafa;
+      border-radius: 2px;
+      box-shadow: none;
+      height: 50px;
+    }
+
+    i {
+      transform: translateY(-50%);
+      position: absolute;
+      font-size: 25px;
+      color: #b4b4b4;
+      right: 25px;
+      z-index: 9;
+      top: 50%;
+    }
+  }
+}

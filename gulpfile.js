@@ -33,8 +33,8 @@ elixir(function(mix) {
         // Opcional: crea una version para cada compilado dentro de public/build
         .version(
             [
-                "public/css/app.css",
-                "public/js/app.js"
+                //"public/css/app.css",
+                //"public/js/app.js"
             ]
         );
 });
