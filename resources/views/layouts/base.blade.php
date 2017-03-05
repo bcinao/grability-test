@@ -26,12 +26,10 @@
     </main>
 
     <footer>
-      <div class="container">
-        <div class="row row-align">
-          <div class="col-xs-8">Grability 2016 - Todos los derechos reservados</div>
-          <div class="col-xs-4">
-            <img src="img/grability-logo.png" class="img-responsive pull-right" />
-          </div>
+      <div class="row row-align">
+        <div class="col-xs-8">Grability 2016 - Todos los derechos reservados</div>
+        <div class="col-xs-4">
+          <img src="img/grability-logo.png" class="img-responsive pull-right" />
         </div>
       </div>
     </footer>

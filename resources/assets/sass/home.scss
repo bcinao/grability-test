@@ -1,0 +1,62 @@
+.title-characters {
+  background-image: url(../img/characters.png);
+}
+
+.select-sortby {
+  max-width: 250px;
+  border-radius: 2px;
+  border: 1px solid #dcdcdc;
+  box-shadow: none;
+  font-size: 16px;
+}
+
+.box-character {
+  background-color: #ffffff;
+  padding: 20px 20px 0 20px;
+  margin: 20px 0;
+
+  @media (max-width: 992px) {
+    margin: 40px 0;
+  }
+
+  .media {
+    width: calc(100% + 60px);
+    position: relative;
+    overflow: visible;
+    top: -40px;
+    left: -40px;
+
+    .media-left {
+      padding-right: 20px;
+
+      .img-character {
+        border-radius: 50%;
+
+        @media (max-width: 1199px) {
+          width: 150px;
+        }
+
+        @media (max-width: 991px) {
+          width: 130px;
+        }
+      }
+    }
+
+    .name-character {
+      text-transform: uppercase;
+      margin-top: 10px;
+      font-weight: 700;
+      font-size: 22px;
+      color: #473d3c;
+    }
+
+    .description-character {
+      margin: 15px 0;
+    }
+  }
+
+  .related-comics {
+    position: relative;
+    top: -20px;
+  }
+}

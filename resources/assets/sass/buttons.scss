@@ -1,0 +1,14 @@
+.btn {
+  padding: 8px 10px;
+  border-radius: 0;
+
+  &.btn-primary {
+    background-color: $btn-primary-bg;
+    border: $btn-primary-border;
+    color: $btn-primary-color;
+
+    &:hover {
+      background-color: $btn-primary-hover;
+    }
+  }
+}

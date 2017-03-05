@@ -1,0 +1,45 @@
+$brand-default:                 #565a5c;
+$brand-primary:                 #ec1d23;
+$brand-success:                 #5cb85c;
+$brand-info:                    #54a0de;
+$brand-warning:                 #f0ad4e;
+$brand-danger:                  #d9534f;
+
+$btn-font-weight:               500;
+
+$btn-default-color:             #fff;
+$btn-default-bg:                $brand-default;
+$btn-default-border:            $brand-default;
+$btn-default-hover:             lighten($brand-default, 5%);
+
+$btn-primary-color:             #fff;
+$btn-primary-bg:                $brand-primary;
+$btn-primary-border:            $brand-primary;
+$btn-primary-hover:             lighten($btn-primary-bg, 5%);
+
+$btn-success-color:             #fff;
+$btn-success-bg:                $brand-success;
+$btn-success-border:            darken($btn-success-bg, 5%);
+$btn-success-hover:             lighten($btn-success-bg, 5%);
+
+$btn-info-color:                #fff;
+$btn-info-bg:                   $brand-info;
+$btn-info-border:               darken($btn-info-bg, 5%);
+$btn-info-hover:                lighten($btn-info-bg, 5%);
+
+$btn-warning-color:             #fff;
+$btn-warning-bg:                $brand-warning;
+$btn-warning-border:            darken($btn-warning-bg, 5%);
+$btn-warning-hover:             lighten($btn-warning-bg, 5%);
+
+$btn-danger-color:              #fff;
+$btn-danger-bg:                 $brand-danger;
+$btn-danger-border:             darken($btn-danger-bg, 5%);
+$btn-danger-hover:              lighten($btn-danger-bg, 5%);
+
+//== Typography
+$font-family-sans-serif:  'Indie Flower', cursive;
+$font-family-roboto:      'Roboto', sans-serif;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif;
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+$font-family-base:        $font-family-roboto;
