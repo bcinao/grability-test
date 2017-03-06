@@ -51,6 +51,25 @@
             </div>
           @endforeach
         </div>
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <nav aria-label="Page navigation">
+              <ul class="pagination">
+                <li>
+                  <a href="#" class="fa fa-angle-left previous" aria-label="Previous"></a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                  <a href="#" class="fa fa-angle-right next" aria-label="Next"></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
       </div>
     </div>
   </div>
