@@ -7512,6 +7512,49 @@ button.close {
     .btn.btn-primary:hover {
       background-color: #ee353a; }
 
+.modal {
+  text-align: center; }
+  .modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px; }
+  .modal .close {
+    opacity: 1; }
+  .modal .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle; }
+    .modal .modal-dialog .modal-content {
+      border-radius: 0; }
+      .modal .modal-dialog .modal-content .modal-body {
+        padding: 30px; }
+  .modal .media .media-left {
+    padding-right: 30px; }
+  .modal .media .media-heading {
+    color: #3d3332;
+    font-weight: 700;
+    margin-bottom: 20px; }
+  .modal .media p {
+    font-size: 16px; }
+  .modal .modal-footer {
+    padding: 0 15px; }
+    .modal .modal-footer .button {
+      padding: 20px;
+      display: block;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 700; }
+      .modal .modal-footer .button.button-addfavourites {
+        background-color: #f0f0f0;
+        color: #3e3232; }
+      .modal .modal-footer .button.button-buy {
+        background-color: #dcdcdc;
+        color: #ec1d23; }
+      .modal .modal-footer .button img {
+        margin-right: 10px; }
+
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: #b4b4b4; }
@@ -7531,6 +7574,8 @@ button.close {
 body {
   background-color: #f4f4f4;
   color: #8d8485; }
+  body.modal-open header .container, body.modal-open main .container {
+    filter: blur(25px); }
 
 .col-center {
   float: none;
