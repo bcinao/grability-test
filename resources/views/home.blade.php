@@ -5,7 +5,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-9">
-      <div class="list-characters">
+      <div class="list-characters" ng-controller="CharactersController as characters">
         <div class="row">
 
           <div class="col-md-12">
@@ -43,7 +43,7 @@
                       <h4><strong>Related comics</strong></h4>
                     </div>
                     @foreach($character['comics'] as $comic)
-                      <div class="col-md-6"><a href="#" class=""  data-toggle="modal" data-target="#view-comics" style="padding: 8px 0;display:block;"><{ $comic['name'] }></a></div>
+                      <div class="col-md-6"><a href="#" class="" ng-click="getComic('http://gateway.marvel.com/v1/public/comics/21366')" style="padding: 8px 0;display:block;"><{ $comic['name'] }></a></div>
                     @endforeach
                   </div>
                 </div>
@@ -75,7 +75,9 @@
   </div>
 </div>
 
-<div id="view-comics" class="modal fade" tabindex="-1" role="dialog">
+<!--<modal title="Login form" visible="showModal"></modal>-->
+
+<div id="view-comics" class="modal fade" tabindex="-1" role="dialog" ng-controller="ComicController as comic">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-body">
@@ -83,12 +85,12 @@
         <div class="media">
           <div class="media-left">
             <a href="#">
-              <img class="media-object img-comics" src="img/avengers.jpg" alt="">
+              <img class="media-object img-comics" ng-src="{{ data.image }}" alt="">
             </a>
           </div>
           <div class="media-body">
-            <h3 class="media-heading text-uppercase">All-new, All-different Avengers (2015) #1.1</h3>
-            <p class="description-character">The times ha come! Their ranks shattered by Civil War, their spirits weighted down by a toll both personal and spiritual, Earth's Mightiest Heroes must find the resolve to stand united one final time against their greatest...</p>
+            <h3 class="media-heading text-uppercase">{{ data.title }}</h3>
+            <p class="description-character">{{ data.description }}</p>
           </div>
         </div>
       </div>
@@ -98,7 +100,7 @@
             <img src="img/btn-favourites-default.png" /><span class="text-uppercase">Add to favourites</span>
           </div>
           <div class="col-sm-6 button button-buy text-center">
-            <img src="img/shopping-cart-primary.png" /><span class="text-uppercase">Buy for $3.99</span>
+            <img src="img/shopping-cart-primary.png" /><span class="text-uppercase">Buy for ${{ data.price }}</span>
           </div>
         </div>
       </div>

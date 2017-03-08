@@ -11,6 +11,8 @@
 
   .close {
     opacity: 1;
+    margin-top: -15px;
+    margin-right: -15px;
   }
 
   .modal-dialog {
@@ -28,8 +30,15 @@
   }
 
   .media {
+    margin-top: 25px;
+    margin-right: 50px;
+
     .media-left {
       padding-right: 30px;
+
+      .media-object {
+        max-height: 50vh;
+      }
     }
 
     .media-heading {
