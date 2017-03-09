@@ -10,6 +10,10 @@
   text-indent: 50px;
   display: table;
   margin: 0 auto;
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    font-size: 26px;
+  }
 }
 
 .select-sortby {

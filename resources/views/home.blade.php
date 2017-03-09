@@ -121,7 +121,7 @@
       <div class="modal-footer">
         <div class="row">
           <div class="col-sm-6 button button-addfavourites text-center" ng-class="{ 'added': added }" ng-click="addFavourites()">
-            <img src="img/btn-favourites-default.png" /><span class="text-uppercase">Add to favourites</span>
+            <img ng-src="{{ added && 'img/btn-favourites-primary.png' || 'img/btn-favourites-default.png' }}"  /><span class="text-uppercase">Add to favourites</span>
           </div>
           <div class="col-sm-6 button button-buy text-center">
             <img src="img/shopping-cart-primary.png" /><span class="text-uppercase">Buy for ${{ comic.price }}</span>
