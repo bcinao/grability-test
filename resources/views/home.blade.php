@@ -72,12 +72,20 @@
         </div>
       </div>
     </div>
+    <div class="col-sm-3">
+      <div class="list-favourites" ng-controller="FavouritesController as favourites">
+        <h2 class="title title-favourites"><strong>My favourites</strong></h2>
+        <div class="box-favourites" ng-repeat="favourite in favourites">
+          <button type="button" class="close" ng-click="remove(favourite.id)" aria-label="Close"><img src="img/btn-delete.png" /></button>
+          <img ng-src="{{ favourite.image }}" class="img-responsive image-favourite" alt="" />
+          <p class="name-favourite">{{ favourite.title }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!--<modal title="Login form" visible="showModal"></modal>-->
-
-<div id="view-comics" class="modal fade" tabindex="-1" role="dialog" ng-controller="ComicController as comic">
+<div id="view-comics" class="modal fade" tabindex="-1" role="dialog" ng-controller="ComicsController as comics">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-body">
@@ -85,22 +93,22 @@
         <div class="media">
           <div class="media-left">
             <a href="#">
-              <img class="media-object img-comics" ng-src="{{ data.image }}" alt="">
+              <img class="media-object img-comics" ng-src="{{ comic.image }}" alt="">
             </a>
           </div>
           <div class="media-body">
-            <h3 class="media-heading text-uppercase">{{ data.title }}</h3>
-            <p class="description-character">{{ data.description }}</p>
+            <h3 class="media-heading text-uppercase">{{ comic.title }}</h3>
+            <p class="description-character">{{ comic.description }}</p>
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <div class="row">
-          <div class="col-sm-6 button button-addfavourites text-center">
+          <div class="col-sm-6 button button-addfavourites text-center" ng-class="{ 'added': added }" ng-click="addFavourites()">
             <img src="img/btn-favourites-default.png" /><span class="text-uppercase">Add to favourites</span>
           </div>
           <div class="col-sm-6 button button-buy text-center">
-            <img src="img/shopping-cart-primary.png" /><span class="text-uppercase">Buy for ${{ data.price }}</span>
+            <img src="img/shopping-cart-primary.png" /><span class="text-uppercase">Buy for ${{ comic.price }}</span>
           </div>
         </div>
       </div>

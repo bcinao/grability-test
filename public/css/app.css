@@ -7556,6 +7556,9 @@ button.close {
       .modal .modal-footer .button.button-addfavourites {
         background-color: #f0f0f0;
         color: #3e3232; }
+        .modal .modal-footer .button.button-addfavourites.added {
+          background-color: #322827;
+          color: #ec1d23; }
       .modal .modal-footer .button.button-buy {
         background-color: #dcdcdc;
         color: #ec1d23; }
@@ -7660,6 +7663,11 @@ footer {
 .title-characters {
   background-image: url(../img/characters.png); }
 
+.title-favourites {
+  background-image: url(../img/favourites.png);
+  background-position: 0;
+  margin-bottom: 30px; }
+
 .select-sortby {
   max-width: 250px;
   border-radius: 2px;
@@ -7701,5 +7709,21 @@ footer {
   .box-character .related-comics {
     position: relative;
     top: -20px; }
+
+.list-favourites .box-favourites {
+  position: relative;
+  margin: 30px; }
+  .list-favourites .box-favourites .close {
+    position: absolute;
+    z-index: 12;
+    top: -18px;
+    opacity: 1;
+    right: -15px; }
+  .list-favourites .box-favourites .name-favourite {
+    margin: 10px 0;
+    color: #3d3334;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center; }
 
 /*# sourceMappingURL=app.css.map */

@@ -65,6 +65,11 @@
       &.button-addfavourites {
         background-color: #f0f0f0;
         color: #3e3232;
+
+        &.added {
+          background-color: #322827;
+          color: #ec1d23;
+        }
       }
 
       &.button-buy {
