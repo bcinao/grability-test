@@ -34,7 +34,7 @@
                   <div class="media-body">
                     <h4 class="media-heading name-character"><{ $character['name'] }></h4>
                     <p class="description-character"><{ $character['description'] }></p>
-                    <a href="#" class="btn btn-primary text-uppercase"><strong>View more</strong></a>
+                    <a href="javascript:void(0);" class="btn btn-primary text-uppercase"><strong>View more</strong></a>
                   </div>
                 </div>
                 <div class="related-comics">
@@ -43,7 +43,7 @@
                       <h4><strong>Related comics</strong></h4>
                     </div>
                     @foreach($character['comics'] as $comic)
-                      <div class="col-md-6"><a href="#" class="" ng-click="getComic('http://gateway.marvel.com/v1/public/comics/21366')" style="padding: 8px 0;display:block;"><{ $comic['name'] }></a></div>
+                      <div class="col-md-6"><a href="javascript:void(0);" ng-click="getComic('http://gateway.marvel.com/v1/public/comics/21366')"><{ $comic['name'] }></a></div>
                     @endforeach
                   </div>
                 </div>

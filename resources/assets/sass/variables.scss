@@ -38,8 +38,10 @@ $btn-danger-border:             darken($btn-danger-bg, 5%);
 $btn-danger-hover:              lighten($btn-danger-bg, 5%);
 
 //== Typography
-$font-family-sans-serif:  'Indie Flower', cursive;
-$font-family-roboto:      'Roboto', sans-serif;
-$font-family-serif:       Georgia, "Times New Roman", Times, serif;
-$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-$font-family-base:        $font-family-roboto;
+$font-family-sans-serif:   'Indie Flower', cursive;
+$font-family-roboto:       'Roboto', sans-serif;
+$font-family-serif:        Georgia, "Times New Roman", Times, serif;
+$font-family-monospace:    Menlo, Monaco, Consolas, "Courier New", monospace;
+$font-family-base:         $font-family-roboto;
+
+$font-color-base:          #8d8485;

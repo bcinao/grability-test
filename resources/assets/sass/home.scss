@@ -1,10 +1,10 @@
 .title-characters {
   background-image: url(../img/characters.png);
+  background-position: -7px 0;
 }
 
 .title-favourites {
   background-image: url(../img/favourites.png);
-  background-position: 0;
   margin-bottom: 30px;
   text-align: center;
   text-indent: 50px;
@@ -68,6 +68,29 @@
   .related-comics {
     position: relative;
     top: -20px;
+
+    h4 {
+      margin-bottom: 14px;
+    }
+
+    a {
+      display: block;
+      font-size: 15px;
+      transition: 0.5s;
+      line-height: 20px;
+      text-decoration: none;
+      padding: 6px 10px 6px 0;
+      color: $font-color-base;
+      background-position: -20px center;
+
+      &:hover {
+        background-image: url(../img/link-arrow.png);
+        background-repeat: no-repeat;
+        background-position: 0;
+        padding: 6px 0 6px 30px;
+        color: $brand-primary;
+      }
+    }
   }
 }
 

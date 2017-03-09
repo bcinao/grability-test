@@ -19,8 +19,9 @@
 }
 
 body {
+  font-family: $font-family-base;
   background-color: #f4f4f4;
-  color: #8d8485;
+  color: $font-color-base;
 
   &.modal-open {
     header, main {
@@ -50,7 +51,7 @@ body {
 
 .title {
   background-repeat: no-repeat;
-  background-position: -7px 0;
+  background-position: 0;
   text-indent: 40px;
   line-height: 40px;
   min-height: 40px;

@@ -7582,6 +7582,7 @@ button.close {
   color: #b4b4b4; }
 
 body {
+  font-family: "Roboto", sans-serif;
   background-color: #f4f4f4;
   color: #8d8485; }
   body.modal-open header .container, body.modal-open main .container {
@@ -7604,7 +7605,7 @@ body {
 
 .title {
   background-repeat: no-repeat;
-  background-position: -7px 0;
+  background-position: 0;
   text-indent: 40px;
   line-height: 40px;
   min-height: 40px;
@@ -7661,12 +7662,16 @@ footer {
   background-color: #2d2727; }
 
 .title-characters {
-  background-image: url(../img/characters.png); }
+  background-image: url(../img/characters.png);
+  background-position: -7px 0; }
 
 .title-favourites {
   background-image: url(../img/favourites.png);
-  background-position: 0;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  text-align: center;
+  text-indent: 50px;
+  display: table;
+  margin: 0 auto; }
 
 .select-sortby {
   max-width: 250px;
@@ -7709,6 +7714,23 @@ footer {
   .box-character .related-comics {
     position: relative;
     top: -20px; }
+    .box-character .related-comics h4 {
+      margin-bottom: 14px; }
+    .box-character .related-comics a {
+      display: block;
+      font-size: 15px;
+      transition: 0.5s;
+      line-height: 20px;
+      text-decoration: none;
+      padding: 6px 10px 6px 0;
+      color: #8d8485;
+      background-position: -20px center; }
+      .box-character .related-comics a:hover {
+        background-image: url(../img/link-arrow.png);
+        background-repeat: no-repeat;
+        background-position: 0;
+        padding: 6px 0 6px 30px;
+        color: #ec1d23; }
 
 .list-favourites .box-favourites {
   position: relative;
