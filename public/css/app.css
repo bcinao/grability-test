@@ -7581,6 +7581,14 @@ button.close {
   /* Firefox 18- */
   color: #b4b4b4; }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  line-height: 100% !important;
+  background-image: url(../img/btn_arrow_down.png) !important;
+  background-position: calc(100% - 10px);
+  background-repeat: no-repeat; }
+
 body {
   font-family: "Roboto", sans-serif;
   background-color: #f4f4f4;
@@ -7643,9 +7651,24 @@ header {
     padding: 15px 0; }
     header .box-search .input-search {
       background-color: #fafafa;
+      padding-right: 50px;
       border-radius: 2px;
       box-shadow: none;
       height: 50px; }
+    header .box-search .btn-search {
+      transform: translateY(-50%);
+      position: absolute;
+      font-size: 25px;
+      color: #b4b4b4;
+      right: 25px;
+      z-index: 9;
+      top: 50%;
+      border: 0;
+      background-color: transparent;
+      background-image: url(../img/search.png);
+      width: 35px;
+      height: 28px;
+      background-position: 0; }
     header .box-search i {
       transform: translateY(-50%);
       position: absolute;
@@ -7683,12 +7706,16 @@ footer {
 .box-character {
   background-color: #ffffff;
   padding: 20px 20px 0 20px;
-  margin: 20px 0; }
+  margin: 20px 0;
+  min-height: 410px;
+  height: 410px; }
   @media (max-width: 992px) {
     .box-character {
-      margin: 40px 0; } }
+      margin: 40px 0;
+      min-height: 375px;
+      height: 375px; } }
   .box-character .media {
-    width: calc(100% + 60px);
+    width: calc(100% + 40px);
     position: relative;
     overflow: visible;
     top: -40px;
@@ -7699,10 +7726,12 @@ footer {
         border-radius: 50%; }
         @media (max-width: 1199px) {
           .box-character .media .media-left .img-character {
-            width: 150px; } }
+            width: 150px;
+            height: 150px; } }
         @media (max-width: 991px) {
           .box-character .media .media-left .img-character {
-            width: 130px; } }
+            width: 130px;
+            height: 130px; } }
     .box-character .media .name-character {
       text-transform: uppercase;
       margin-top: 10px;
@@ -7710,7 +7739,22 @@ footer {
       font-size: 22px;
       color: #473d3c; }
     .box-character .media .description-character {
-      margin: 15px 0; }
+      margin: 15px 10px 15px 0;
+      font-size: 15px;
+      display: -webkit-box;
+      width: 100%;
+      height: 126px;
+      min-height: 126px;
+      line-height: 1.4;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+      @media (max-width: 991px) {
+        .box-character .media .description-character {
+          height: 105px;
+          min-height: 105px;
+          -webkit-line-clamp: 5; } }
   .box-character .related-comics {
     position: relative;
     top: -20px; }
@@ -7719,22 +7763,39 @@ footer {
     .box-character .related-comics a {
       display: block;
       font-size: 15px;
-      transition: 0.5s;
-      line-height: 20px;
       text-decoration: none;
       padding: 6px 10px 6px 0;
       color: #8d8485;
-      background-position: -20px center; }
+      background-position: -20px center;
+      display: -webkit-box;
+      width: 100%;
+      height: 27.3px;
+      min-height: 27.3px;
+      -webkit-line-clamp: 1;
+      margin: 0 auto;
+      line-height: 1.4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+      @media (min-width: 992px) {
+        .box-character .related-comics a {
+          height: 50.4px;
+          min-height: 50.4px;
+          -webkit-line-clamp: 2; } }
       .box-character .related-comics a:hover {
         background-image: url(../img/link-arrow.png);
         background-repeat: no-repeat;
         background-position: 0;
         padding: 6px 0 6px 30px;
-        color: #ec1d23; }
+        color: #ec1d23;
+        transition: 0.5s; }
+  .box-character .not-results {
+    margin: 60px 0; }
 
 .list-favourites .box-favourites {
   position: relative;
-  margin: 30px; }
+  margin: 30px auto;
+  max-width: 250px; }
   .list-favourites .box-favourites .close {
     position: absolute;
     z-index: 12;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,23 +15,51 @@ class CharacterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      
-      $characters = array(
-        array('id' => 1, 'name'  => 'Spider-Man', 'image' => 'https://i.annihil.us/u/prod/marvel/i/mg/9/30/538cd33e15ab7/standard_xlarge.jpg', 'description' => 'texto de prueba', 'comics' => array(array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'))),
-        array('id' => 2, 'name'  => 'Black Widow', 'image' => 'https://i.annihil.us/u/prod/marvel/i/mg/9/10/537ba3f27a6e0/standard_xlarge.jpg', 'description' => 'texto de prueba', 'comics' => array(array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'))),
-        array('id' => 3, 'name'  => 'Captain America', 'image' => 'https://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087/standard_xlarge.jpg', 'description' => 'texto de prueba', 'comics' => array(array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'))),
-        array('id' => 4, 'name'  => 'Wolverine', 'image' => 'https://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf/standard_xlarge.jpg', 'description' => 'texto de prueba', 'comics' => array(array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'))),
-        array('id' => 5, 'name'  => 'Daredevil', 'image' => 'https://i.annihil.us/u/prod/marvel/i/mg/9/30/538cd33e15ab7/standard_xlarge.jpg', 'description' => 'texto de prueba', 'comics' => array(array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'))),
-        array('id' => 6, 'name'  => 'Luke Cage', 'image' => 'https://i.annihil.us/u/prod/marvel/i/mg/9/30/538cd33e15ab7/standard_xlarge.jpg', 'description' => 'texto de prueba', 'comics' => array(array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'))),
-        array('id' => 7, 'name'  => 'Thor', 'image' => 'https://i.annihil.us/u/prod/marvel/i/mg/9/30/538cd33e15ab7/standard_xlarge.jpg', 'description' => 'texto de prueba', 'comics' => array(array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'))),
-        array('id' => 8, 'name'  => 'Ultron', 'image' => 'https://i.annihil.us/u/prod/marvel/i/mg/9/30/538cd33e15ab7/standard_xlarge.jpg', 'description' => 'texto de prueba', 'comics' => array(array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'))),
-        array('id' => 9, 'name'  => 'Captain Marvel', 'image' => 'https://i.annihil.us/u/prod/marvel/i/mg/9/30/538cd33e15ab7/standard_xlarge.jpg', 'description' => 'texto de prueba', 'comics' => array(array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'))),
-        array('id' => 10, 'name'  => 'Hulk', 'image' => 'https://i.annihil.us/u/prod/marvel/i/mg/9/30/538cd33e15ab7/standard_xlarge.jpg', 'description' => 'texto de prueba', 'comics' => array(array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'), array('name' => 'related comic name two lines'))),
-      );
 
-      return view('home')->with(['characters' => $characters]);
+      $name = $request->input('search');
+      $orderby = $request->input('orderby');
+
+      $ts = time();
+      $publicKey = env('APP_KEY');
+      $privateKey = env('APP_KEY_PRIVATE');
+      $hash = md5($ts . $privateKey . $publicKey);
+
+      $params = [
+        "ts" => $ts,
+        "apikey" => $publicKey,
+        "hash" => $hash,
+        "limit" => 10
+      ];
+
+      if ($name) $params["name"] = $name;
+      if ($orderby) $params["orderBy"] = $orderby;
+
+      $client = new Client([ 'base_uri' => 'http://gateway.marvel.com/v1/public/', 'timeout'  => 2.0 ]);
+
+      $response = $client->request("GET", "characters", ["query" => $params]);
+
+      $code = $response->getStatusCode();
+
+      if ($code == 200) {
+
+        $result = json_decode($response->getBody()->getContents(), true)["data"];
+
+        $characters = array();
+
+        foreach($result["results"] as $item) {
+
+          array_push($characters, array(
+            "id" => $item["id"],
+            "name" => $item["name"],
+            "image" => $item["thumbnail"]["path"] . "." . $item["thumbnail"]["extension"],
+            "description" => $item["description"],
+            "comics" => $item["comics"]["items"]));
+        }
+
+        return view('home')->with(['characters' => $characters, "name" => $name, "orderby" => $orderby]);
+      }
     }
 
     /**

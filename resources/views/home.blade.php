@@ -4,31 +4,33 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-9">
+    <div class="col-md-9">
       <div class="list-characters" ng-controller="CharactersController as characters">
-        <div class="row">
-
-          <div class="col-md-12">
-              <div class="row row-align" style="margin-bottom:20px;">
-                <div class="col-xs-6">
-                  <h2 class="pull-left title title-characters"><strong>Characters</strong></h2>
-                </div>
-                <div class="col-xs-6">
-                  <select id="select-sortby" name="sort_by" class="form-control input-lg pull-right select-sortby">
-                    <option value="">Sort by</option>
-                    <option ng-repeat="n in ['Name']" ng-value="n">{{ n }}</option>
-                  </select>
-                </div>
-              </div>
+        <div class="row row-align" style="margin-bottom:20px;">
+          <div class="col-xs-6">
+            <h2 class="pull-left title title-characters"><strong>Characters</strong></h2>
           </div>
-
+          <div class="col-xs-6">
+            <form method="GET" action="#">
+              @if($name)
+              <input type="hidden" name="search" value="<{ $name }>" />
+              @endif
+              <select id="select-sortby" name="orderby" onchange="this.form.submit()" class="form-control input-lg pull-right select-sortby">
+                <option value="">Sort by</option>
+                <option ng-repeat="n in ['name']" ng-value="n">{{ n }}</option>
+              </select>
+            </form>
+          </div>
+        </div>
+        @if (count($characters) > 0)
+          <div class="row">
           @foreach($characters as $character)
             <div class="col-md-6">
               <div class="box-character">
                 <div class="media">
                   <div class="media-left">
                     <a href="#">
-                      <img class="media-object img-character" src="<{ $character['image'] }>" alt="<{ $character['name'] }>">
+                      <img class="media-object img-character" width="200" height="200" src="<{ $character['image'] }>" alt="<{ $character['name'] }>">
                     </a>
                   </div>
                   <div class="media-body">
@@ -42,37 +44,51 @@
                     <div class="col-md-12">
                       <h4><strong>Related comics</strong></h4>
                     </div>
-                    @foreach($character['comics'] as $comic)
-                      <div class="col-md-6"><a href="javascript:void(0);" ng-click="getComic('http://gateway.marvel.com/v1/public/comics/21366')"><{ $comic['name'] }></a></div>
-                    @endforeach
+                    <div class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner" role="listbox">
+                      @foreach($character['comics'] as $key => $comic)
+                        @if ($key % 4 == 0)
+                        <div class="item <{ $key == 0 ? 'active' : '' }>">
+                        @endif
+                          <div class="col-md-6"><a href="javascript:void(0);" ng-click="getComic('<{$comic['resourceURI']}>')"><{ $comic['name'] }></a></div>
+
+                        @if ($key % 4 == 3 || $key == count($character['comics']) - 1)
+                        </div>
+                        @endif
+                      @endforeach
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           @endforeach
-        </div>
-        <div class="row">
-          <div class="col-sm-12 text-center">
-            <nav aria-label="Page navigation">
-              <ul class="pagination">
-                <li>
-                  <a href="#" class="fa fa-angle-left previous" aria-label="Previous"></a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                  <a href="#" class="fa fa-angle-right next" aria-label="Next"></a>
-                </li>
-              </ul>
-            </nav>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <nav aria-label="Page navigation">
+                <ul class="pagination">
+                  <li>
+                    <a href="#" class="fa fa-angle-left previous" aria-label="Previous"></a>
+                  </li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li>
+                    <a href="#" class="fa fa-angle-right next" aria-label="Next"></a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        @else
+          <h2 class="text-center not-results">No se encontraron resultados para "<{ $name }>"</2>
+        @endif
       </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3">
       <div class="list-favourites" ng-controller="FavouritesController as favourites">
         <h2 class="title title-favourites"><strong>My favourites</strong></h2>
         <div class="box-favourites" ng-repeat="favourite in favourites">

@@ -13,9 +13,26 @@ header {
 
     .input-search {
       background-color: #fafafa;
+      padding-right: 50px;
       border-radius: 2px;
       box-shadow: none;
       height: 50px;
+    }
+
+    .btn-search {
+      transform: translateY(-50%);
+      position: absolute;
+      font-size: 25px;
+      color: #b4b4b4;
+      right: 25px;
+      z-index: 9;
+      top: 50%;
+      border: 0;
+      background-color: transparent;
+      background-image: url(../img/search.png);
+      width: 35px;
+      height: 28px;
+      background-position: 0;
     }
 
     i {

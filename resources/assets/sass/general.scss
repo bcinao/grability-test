@@ -18,6 +18,15 @@
   color: #b4b4b4;
 }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  line-height: 100% !important;
+  background-image: url(../img/btn_arrow_down.png) !important;
+  background-position: calc(100% - 10px);
+  background-repeat: no-repeat;
+}
+
 body {
   font-family: $font-family-base;
   background-color: #f4f4f4;
