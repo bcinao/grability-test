@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-  <div class="row">
+  <div class="row row-eq-height-md">
     <div class="col-md-9">
       <div class="row row-align padding-small">
         <div class="col-xs-6">

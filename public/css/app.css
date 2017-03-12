@@ -7587,6 +7587,13 @@ button.close {
   /* Firefox 18- */
   color: #b4b4b4; }
 
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f4f4;
+  color: #8d8485; }
+  body.modal-open header .container, body.modal-open main .container {
+    filter: blur(25px); }
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -7595,12 +7602,10 @@ select {
   background-position: calc(100% - 10px);
   background-repeat: no-repeat; }
 
-body {
-  font-family: "Roboto", sans-serif;
-  background-color: #f4f4f4;
-  color: #8d8485; }
-  body.modal-open header .container, body.modal-open main .container {
-    filter: blur(25px); }
+@media (min-width: 992px) {
+  .row-eq-height-md {
+    display: -ms-flexbox;
+    display: flex; } }
 
 .navbar-brand {
   float: left;
