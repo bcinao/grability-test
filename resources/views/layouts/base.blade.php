@@ -8,10 +8,10 @@
   <body>
 
     <header>
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
-          <a href="http://grability.local"><img src="img/logo.jpg" class="logo img-responsive pull-left" alt="" /></a>
-          <div class="col-xs-8 col-md-6 col-center pull-right-sm">
+          <a href="/" class="navbar-brand"><img src="img/logo.jpg" class="logo img-responsive" alt="" /></a>
+          <div class="col-xs-7 col-md-6 col-center pull-right-sm">
             <div class="box-search">
               <form method="GET" action="#">
                 <input class="form-control input-lg input-search" type="text" name="search" value="<{ $name }>" placeholder="Search character..." />

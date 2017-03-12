@@ -2,26 +2,26 @@
 
 @section('content')
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-9">
-      <div class="list-characters" ng-controller="CharactersController as characters">
-        <div class="row row-align" style="margin-bottom:20px;">
-          <div class="col-xs-6">
-            <h2 class="pull-left title title-characters"><strong>Characters</strong></h2>
-          </div>
-          <div class="col-xs-6">
-            <form method="GET" action="#">
-              @if($name)
-              <input type="hidden" name="search" value="<{ $name }>" />
-              @endif
-              <select id="select-sortby" name="orderby" onchange="this.form.submit()" class="form-control input-lg pull-right select-sortby">
-                <option value="">Sort by</option>
-                <option ng-repeat="n in ['name']" ng-value="n">{{ n }}</option>
-              </select>
-            </form>
-          </div>
+      <div class="row row-align padding-small">
+        <div class="col-xs-6">
+          <h2 class="pull-left title title-characters"><strong>Characters</strong></h2>
         </div>
+        <div class="col-xs-6">
+          <form method="GET" action="#">
+            @if($name)
+            <input type="hidden" name="search" value="<{ $name }>" />
+            @endif
+            <select id="select-sortby" name="orderby" onchange="this.form.submit()" class="form-control input-lg pull-right select-sortby">
+              <option value="">Sort by</option>
+              <option ng-repeat="n in ['name']" ng-value="n">{{ n }}</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <div class="list-characters" ng-controller="CharactersController as characters">
         @if (count($characters) > 0)
           <div class="row">
           @foreach($characters as $character)
@@ -30,7 +30,7 @@
                 <div class="media">
                   <div class="media-left">
                     <a href="#">
-                      <img class="media-object img-character" width="200" height="200" src="<{ $character['image'] }>" alt="<{ $character['name'] }>">
+                      <img class="media-object img-character" width="180" height="180" src="<{ $character['image'] }>" alt="<{ $character['name'] }>">
                     </a>
                   </div>
                   <div class="media-body">
@@ -47,13 +47,10 @@
                     <div class="carousel slide" data-ride="carousel">
                       <div class="carousel-inner" role="listbox">
                       @foreach($character['comics'] as $key => $comic)
-                        @if ($key % 4 == 0)
-                        <div class="item <{ $key == 0 ? 'active' : '' }>">
-                        @endif
-                          <div class="col-md-6"><a href="javascript:void(0);" ng-click="getComic('<{$comic['resourceURI']}>')"><{ $comic['name'] }></a></div>
-
-                        @if ($key % 4 == 3 || $key == count($character['comics']) - 1)
-                        </div>
+                        @if ($key < 4)
+                          <div class="col-md-6">
+                            <a href="javascript:void(0);" ng-click="getComic('<{$comic['resourceURI']}>')"><{ $comic['name'] }></a>
+                          </div>
                         @endif
                       @endforeach
                       </div>
@@ -88,14 +85,17 @@
         @endif
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 bar-favourites">
       <div class="list-favourites" ng-controller="FavouritesController as favourites">
         <h2 class="title title-favourites"><strong>My favourites</strong></h2>
-        <div class="box-favourites" ng-repeat="favourite in favourites">
-          <button type="button" class="close" ng-click="remove(favourite.id)" aria-label="Close"><img src="img/btn-delete.png" /></button>
-          <img ng-src="{{ favourite.image }}" class="img-responsive image-favourite" alt="" />
-          <p class="name-favourite">{{ favourite.title }}</p>
-        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 col-md-12" ng-repeat="favourite in favourites">
+            <div class="box-favourites">
+              <button type="button" class="close" ng-click="remove(favourite.id)" aria-label="Close"><img src="img/btn-delete.png" /></button>
+              <img ng-src="{{ favourite.image }}" class="img-responsive image-favourite" alt="" />
+              <p class="name-favourite">{{ favourite.title }}</p>
+            </div>
+          </div>
       </div>
     </div>
   </div>
@@ -107,7 +107,7 @@
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="img/btn-close.png" /></button>
         <div class="media">
-          <div class="media-left">
+          <div class="media-left hidden-xs">
             <a href="#">
               <img class="media-object img-comics" ng-src="{{ comic.image }}" alt="">
             </a>
@@ -120,10 +120,10 @@
       </div>
       <div class="modal-footer">
         <div class="row">
-          <div class="col-sm-6 button button-addfavourites text-center" ng-class="{ 'added': added }" ng-click="addFavourites()">
+          <div class="col-xs-6 button button-addfavourites text-center" ng-class="{ 'added': added }" ng-click="addFavourites()">
             <img ng-src="{{ added && 'img/btn-favourites-primary.png' || 'img/btn-favourites-default.png' }}"  /><span class="text-uppercase">Add to favourites</span>
           </div>
-          <div class="col-sm-6 button button-buy text-center">
+          <div class="col-xs-6 button button-buy text-center">
             <img src="img/shopping-cart-primary.png" /><span class="text-uppercase">Buy for ${{ comic.price }}</span>
           </div>
         </div>

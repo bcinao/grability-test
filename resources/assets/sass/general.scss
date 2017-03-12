@@ -41,6 +41,13 @@ body {
   }
 }
 
+.navbar-brand {
+  float: left;
+  font-size: 18px;
+  line-height: 20px;
+  padding: 10px 15px;
+}
+
 .col-center {
   float: none;
   margin-left: auto;
@@ -50,6 +57,10 @@ body {
 .row-align {
   display: flex;
   align-items: center;
+}
+
+.padding-small {
+  padding: 20px 0;
 }
 
 @media (max-width: 991px) {
@@ -70,6 +81,7 @@ body {
 }
 
 .pagination {
+  margin: 0 0 40px 0;
 
   a {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

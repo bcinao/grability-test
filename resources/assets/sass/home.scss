@@ -5,11 +5,11 @@
 
 .title-favourites {
   background-image: url(../img/favourites.png);
-  margin-bottom: 30px;
   text-align: center;
   text-indent: 50px;
-  display: table;
+  padding: 20px 0;
   margin: 0 auto;
+  display: table;
 
   @media (min-width: 992px) and (max-width: 1199px) {
     font-size: 26px;
@@ -24,142 +24,181 @@
   font-size: 16px;
 }
 
-.box-character {
-  background-color: #ffffff;
-  padding: 20px 20px 0 20px;
-  margin: 20px 0;
-  min-height: 410px;
-  height: 410px;
+.list-characters {
+  padding-left: 25px;
 
   @media (max-width: 992px) {
-    margin: 40px 0;
-    min-height: 375px;
-    height: 375px;
+    & .row > div {
+      &:first-child {
+        & .box-character {
+          margin-top: 20px;
+        }
+      }
+    }
   }
 
-  .media {
-    width: calc(100% + 40px);
-    position: relative;
-    overflow: visible;
-    top: -40px;
-    left: -40px;
+  .box-character {
+    background-color: #ffffff;
+    min-height: 410px;
+    height: 410px;
+    padding: 20px;
+    margin: 20px 5px;
 
-    .media-left {
-      padding-right: 20px;
+    @media (max-width: 992px) {
+      min-height: 375px;
+      height: 375px;
+      margin: 40px 0;
+    }
 
-      .img-character {
-        border-radius: 50%;
+    .media {
+      width: calc(100% + 40px);
+      position: relative;
+      overflow: visible;
+      left: -40px;
+      top: -40px;
 
-        @media (max-width: 1199px) {
-          width: 150px;
-          height: 150px;
+      .media-left {
+        padding-right: 20px;
+
+        .img-character {
+          border-radius: 50%;
+
+          @media (max-width: 1199px) {
+            width: 150px;
+            height: 150px;
+          }
+
+          @media (max-width: 991px) {
+            width: 130px;
+            height: 130px;
+          }
         }
+      }
+
+      .name-character {
+        text-transform: uppercase;
+        margin-top: 10px;
+        font-weight: 700;
+        font-size: 22px;
+        color: #473d3c;
+      }
+
+      .description-character {
+        margin: 15px 10px 15px 0;
+        font-size: 15px;
+        display: -webkit-box;
+        width: 100%;
+        height: 15px * 1.4 * 6;
+        min-height: 15px * 1.4 * 6;
+        line-height: 1.4;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         @media (max-width: 991px) {
-          width: 130px;
-          height: 130px;
+          height: 15px * 1.4 * 5;
+          min-height: 15px * 1.4 * 5;
+          -webkit-line-clamp: 5;
         }
       }
     }
 
-    .name-character {
-      text-transform: uppercase;
-      margin-top: 10px;
-      font-weight: 700;
-      font-size: 22px;
-      color: #473d3c;
+    .related-comics {
+      position: relative;
+      top: -20px;
+
+      h4 {
+        margin-bottom: 14px;
+      }
+
+      a {
+        display: block;
+        font-size: 15px;
+        text-decoration: none;
+        padding: 6px 10px 6px 0;
+        color: $font-color-base;
+        background-position: -20px 6px;
+        display: -webkit-box;
+        width: 100%;
+        height: 15px * 1.4 * 1.3;
+        min-height: 15px * 1.4 * 1.3;
+        -webkit-line-clamp: 1;
+        margin: 0 auto;
+        line-height: 1.4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @media (min-width: 992px) {
+          height: 15px * 1.4 * 2.4;
+          min-height: 15px * 1.4 * 2.4;
+          -webkit-line-clamp: 2;
+        }
+
+        &:hover {
+          background-image: url(../img/link-arrow.png);
+          background-repeat: no-repeat;
+          background-position: 0 6px;
+          padding: 6px 0 6px 30px;
+          color: $brand-primary;
+          transition: 0.25s;
+        }
+      }
     }
 
-    .description-character {
-      margin: 15px 10px 15px 0;
-      font-size: 15px;
-      display: -webkit-box;
-      width: 100%;
-      height: 15px * 1.4 * 6;
-      min-height: 15px * 1.4 * 6;
-      line-height: 1.4;
-      -webkit-line-clamp: 6;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      @media (max-width: 991px) {
-        height: 15px * 1.4 * 5;
-        min-height: 15px * 1.4 * 5;
-        -webkit-line-clamp: 5;
-      }
+    .not-results  {
+      margin: 60px 0;
     }
   }
 
-  .related-comics {
-    position: relative;
-    top: -20px;
-
-    h4 {
-      margin-bottom: 14px;
+  @media (max-width: 676px) {
+    .pagination a {
+      line-height: 24px !important;
+      height: 35px;
+      width: 35px;
     }
-
-    a {
-      display: block;
-      font-size: 15px;
-      text-decoration: none;
-      padding: 6px 10px 6px 0;
-      color: $font-color-base;
-      background-position: -20px center;
-      display: -webkit-box;
-      width: 100%;
-      height: 15px * 1.4 * 1.3;
-      min-height: 15px * 1.4 * 1.3;
-      -webkit-line-clamp: 1;
-      margin: 0 auto;
-      line-height: 1.4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      @media (min-width: 992px) {
-        height: 15px * 1.4 * 2.4;
-        min-height: 15px * 1.4 * 2.4;
-        -webkit-line-clamp: 2;
-      }
-
-      &:hover {
-        background-image: url(../img/link-arrow.png);
-        background-repeat: no-repeat;
-        background-position: 0;
-        padding: 6px 0 6px 30px;
-        color: $brand-primary;
-        transition: 0.5s;
-      }
-    }
-  }
-
-  .not-results  {
-    margin: 60px 0;
   }
 }
 
-.list-favourites {
+.bar-favourites {
+  background-color: #ebebeb;
 
-  .box-favourites {
-    position: relative;
-    margin: 30px auto;
-    max-width: 250px;
+  .list-favourites {
+    text-align: center;
 
-    .close {
-      position: absolute;
-      z-index: 12;
-      top: -18px;
-      opacity: 1;
-      right: -15px;
-    }
+    .box-favourites {
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+      max-width: 215px;
+      margin: 20px 0;
 
-    .name-favourite {
-      margin: 10px 0;
-      color: #3d3334;
-      font-size: 20px;
-      font-weight: 700;
-      text-align: center;
+      .close {
+        position: absolute;
+        z-index: 12;
+        top: -18px;
+        opacity: 1;
+        right: -15px;
+      }
+
+      .image-favourite {
+        height: 330px;
+
+        &:hover {
+          transform: scale(1.025);
+          transition: 0.2s;
+        }
+      }
+
+      .name-favourite {
+        margin: 10px 0;
+        color: #3d3334;
+        font-size: 20px;
+        font-weight: 700;
+        text-align: center;
+        height: 60px;
+      }
     }
   }
 }
