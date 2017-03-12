@@ -44769,7 +44769,7 @@ $provide.value("$locale", {
         var add = function(bool) {
 
           if (!bool) {
-            self.data.push({ id: comic.id, title: comic.title, image: comic.image });
+            self.data.push({ id: comic.id, title: comic.title, image: comic.image, resourceURI: comic.resourceURI });
             localStorage.setItem("favourites", angular.toJson(self.data));
           }
 
@@ -44813,6 +44813,7 @@ $provide.value("$locale", {
           self.data.description = data.results[0].description;
           self.data.image = data.results[0].thumbnail.path + '.jpg';
           self.data.price = data.results[0].prices[0].price;
+          self.data.resourceURI = data.results[0].resourceURI;
 
           angular.element('#view-comics').modal('show');
         });
@@ -44847,7 +44848,7 @@ $provide.value("$locale", {
 
   });
 
-  app.controller('FavouritesController', function($scope, favourites) {
+  app.controller('FavouritesController', function($scope, favourites, getComic) {
     favourites.init();
 
     $scope.favourites = favourites.data;
@@ -44855,6 +44856,10 @@ $provide.value("$locale", {
     $scope.remove = function (id) {
         favourites.remove(id);
         $scope.favourites = favourites.data;
+    };
+
+    $scope.getComic = function (url) {
+      getComic.get(url);
     };
   });
 

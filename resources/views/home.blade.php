@@ -90,7 +90,7 @@
         <h2 class="title title-favourites"><strong>My favourites</strong></h2>
         <div class="row">
           <div class="col-xs-12 col-sm-4 col-md-12" ng-repeat="favourite in favourites">
-            <div class="box-favourites">
+            <div class="box-favourites" ng-click="getComic(favourite.resourceURI)">
               <button type="button" class="close" ng-click="remove(favourite.id)" aria-label="Close"><img src="img/btn-delete.png" /></button>
               <img ng-src="{{ favourite.image }}" class="img-responsive image-favourite" alt="" />
               <p class="name-favourite">{{ favourite.title }}</p>

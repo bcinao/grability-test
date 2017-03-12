@@ -41,6 +41,13 @@ body {
   }
 }
 
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
 .navbar-brand {
   float: left;
   font-size: 18px;

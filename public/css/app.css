@@ -7836,7 +7836,8 @@ footer {
         opacity: 1;
         right: -15px; }
       .bar-favourites .list-favourites .box-favourites .image-favourite {
-        height: 330px; }
+        height: 330px;
+        cursor: pointer; }
         .bar-favourites .list-favourites .box-favourites .image-favourite:hover {
           transform: scale(1.025);
           transition: 0.2s; }
