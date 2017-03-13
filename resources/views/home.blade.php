@@ -11,9 +11,6 @@
         </div>
         <div class="col-xs-6">
           <form method="GET" action="#">
-            @if($name)
-            <input type="hidden" name="search" value="<{ $name }>" />
-            @endif
             <select id="select-sortby" name="orderby" onchange="this.form.submit()" class="form-control input-lg pull-right select-sortby">
               <option value="">Sort by</option>
               <option ng-repeat="n in ['name']" ng-value="n">{{ n }}</option>
@@ -44,8 +41,7 @@
                     <div class="col-md-12">
                       <h4><strong>Related comics</strong></h4>
                     </div>
-                    <div class="carousel slide" data-ride="carousel">
-                      <div class="carousel-inner" role="listbox">
+
                       @foreach($character['comics'] as $key => $comic)
                         @if ($key < 4)
                           <div class="col-md-6">
@@ -53,8 +49,7 @@
                           </div>
                         @endif
                       @endforeach
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </div>

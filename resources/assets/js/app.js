@@ -5,6 +5,11 @@
     // Configuraciones al servicio $http.
   }]);
 
+  app.constant('config', {
+    apiKey: "9a0711e83b5b00c91e118c1211e7bdfa",
+    apiUrl: 'http://gateway.marvel.com/v1/public/'
+  });
+
   app.factory('favourites', function() {
     return {
       data: [],
@@ -95,6 +100,70 @@
           angular.element('#view-comics').modal('show');
         });
       }
+    };
+  });
+
+  app.factory('getCharacters', function(config, $http) {
+
+    return {
+      data: [],
+      get: function (name, callback) {
+        var self = this;
+
+        this.data = [];
+
+        $http.get(config.apiUrl + "characters?nameStartsWith=" + name + "&limit=10&apikey=" + config.apiKey)
+          .then(function(response, status) {
+            var results = response.data.data.results;
+
+            if (results.length) {
+              self.data = results.map(function(value) {
+                return { "id": value.id, "name": value.name, "image": value.thumbnail.path + "." + value.thumbnail.extension };
+              });
+            }
+
+            callback(self.data);
+
+          }, function errorCallback(response) {
+
+            callback(self.data);
+          });
+      }
+    };
+  });
+
+  app.controller('SearchController', function ($scope, $timeout, getCharacters) {
+    $scope.results = [];
+    $scope.show = false;
+    $scope.error = false;
+    $scope.timer = null;
+
+    $scope.search = function () {
+      $scope.error = false;
+
+      if ($scope.name.length > 3) {
+
+        if ($scope.timer) $timeout.cancel($scope.timer);
+
+        $scope.timer = $timeout(function () {
+            getCharacters.get($scope.name, function (response) {
+
+              if (response.length) {
+                $scope.results = response;
+              } else {
+                $scope.error = true;
+              }
+
+              $scope.show = true;
+            });
+        }, 250);
+      } else {
+        $scope.results = [];
+      }
+    };
+
+    $scope.showToggle = function (e) {
+      $scope.show = !$scope.show;
     };
   });
 

@@ -17,8 +17,6 @@ class CharacterController extends Controller
      */
     public function index(Request $request)
     {
-
-      $name = $request->input('search');
       $orderby = $request->input('orderby');
 
       $ts = time();
@@ -33,7 +31,6 @@ class CharacterController extends Controller
         "limit" => 10
       ];
 
-      if ($name) $params["name"] = $name;
       if ($orderby) $params["orderBy"] = $orderby;
 
       $client = new Client([ 'base_uri' => 'http://gateway.marvel.com/v1/public/', 'timeout'  => 2.0 ]);
@@ -58,7 +55,7 @@ class CharacterController extends Controller
             "comics" => $item["comics"]["items"]));
         }
 
-        return view('home')->with(['characters' => $characters, "name" => $name, "orderby" => $orderby]);
+        return view('home')->with(['characters' => $characters, "orderby" => $orderby]);
       }
     }
 

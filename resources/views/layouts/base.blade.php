@@ -12,11 +12,15 @@
         <div class="row">
           <a href="/" class="navbar-brand"><img src="img/logo.jpg" class="logo img-responsive" alt="" /></a>
           <div class="col-xs-7 col-md-6 col-center pull-right-sm">
-            <div class="box-search">
-              <form method="GET" action="#">
-                <input class="form-control input-lg input-search" type="text" name="search" value="<{ $name }>" placeholder="Search character..." />
-                <input type="submit" value="" class="btn-search" />
-              </form>
+            <div class="box-search" ng-controller="SearchController as search">
+              <div class="dropdown" ng-class="{ 'open': show }">
+                <input data-toggle="dropdown" class="form-control input-lg input-search" type="text" ng-model="name" ng-keyup="search()" name="search" placeholder="Search character..." autofocus="auto" autocomplete="off" />
+                <i></i>
+                <ul class="dropdown-menu list-results list-unstyled">
+                  <li ng-repeat="result in results"><a href="character/{{ result.id }}"><img class="img-result img-circle" ng-src="{{ result.image }}" alt="{{ result.name }}"> {{ result.name }}</a></li>
+                  <li ng-if="error" class="text-center not-results">No character found</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
