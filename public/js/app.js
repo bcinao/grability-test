@@ -44721,160 +44721,19 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-(function(){
-  var app = angular.module('home', []);
+angular.module('app', [])
 
-  app.config(['$httpProvider', function ($httpProvider) {
-    // Configuraciones al servicio $http.
-  }]);
+.config(['$httpProvider', function ($httpProvider) {
+  // Configuraciones al servicio $http.
+}])
 
-  app.constant('config', {
-    apiKey: "9a0711e83b5b00c91e118c1211e7bdfa",
-    apiUrl: 'http://gateway.marvel.com/v1/public/'
-  });
+.constant('config', {
+  apiKey: "9a0711e83b5b00c91e118c1211e7bdfa",
+  apiUrl: 'http://gateway.marvel.com/v1/public/'
+});
 
-  app.factory('getComic', function($http) {
-    var apiKey = "9a0711e83b5b00c91e118c1211e7bdfa";
-
-    return {
-      data: {
-        id: 0,
-        title: "",
-        description: "",
-        image: "",
-        price: 0
-      },
-      get: function (url, callback) {
-        var self = this;
-
-        $http.get(url + "?apikey=" + apiKey).then(function(response, status) {
-          var data = response.data.data;
-
-          self.data.id = data.results[0].id;
-          self.data.title = data.results[0].title;
-          self.data.description = data.results[0].description;
-          self.data.image = data.results[0].thumbnail.path + '.jpg';
-          self.data.price = data.results[0].prices[0].price;
-          self.data.resourceURI = data.results[0].resourceURI;
-
-          angular.element('#view-comics').modal('show');
-        });
-      }
-    };
-  });
-
-  app.factory('getCharacters', function(config, $http) {
-
-    return {
-      data: [],
-      get: function (name, callback) {
-        var self = this;
-
-        this.data = [];
-
-        $http.get(config.apiUrl + "characters?nameStartsWith=" + name + "&limit=10&apikey=" + config.apiKey)
-          .then(function(response, status) {
-            var results = response.data.data.results;
-
-            if (results.length) {
-              self.data = results.map(function(value) {
-                return { "id": value.id, "name": value.name, "image": value.thumbnail.path + "." + value.thumbnail.extension };
-              });
-            }
-
-            callback(self.data);
-
-          }, function errorCallback(response) {
-
-            callback(self.data);
-          });
-      }
-    };
-  });
-
-  app.controller('SearchController', function ($scope, $timeout, getCharacters) {
-    $scope.results = [];
-    $scope.show = false;
-    $scope.error = false;
-    $scope.timer = null;
-
-    $scope.search = function () {
-      $scope.error = false;
-
-      if ($scope.name.length > 3) {
-
-        if ($scope.timer) $timeout.cancel($scope.timer);
-
-        $scope.timer = $timeout(function () {
-            getCharacters.get($scope.name, function (response) {
-
-              if (response.length) {
-                $scope.results = response;
-              } else {
-                $scope.error = true;
-              }
-
-              $scope.show = true;
-            });
-        }, 250);
-      } else {
-        $scope.results = [];
-      }
-    };
-
-    $scope.showToggle = function (e) {
-      $scope.show = !$scope.show;
-    };
-  });
-
-  app.controller('CharactersController', function($scope, getComic) {
-
-    $scope.getComic = function (url) {
-      getComic.get(url);
-    };
-  });
-
-  app.controller('ComicsController', function($scope, getComic, favourites) {
-    $scope.added = false;
-    $scope.comic = getComic.data;
-
-    $scope.addFavourites = function () {
-      if (!$scope.added) {
-        favourites.add($scope.comic, function (bool) {
-          $scope.added = bool;
-        });
-      }
-    };
-
-    angular.element('#view-comics').on('show.bs.modal', function () {
-      favourites.verify($scope.comic, function(bool) {
-        $scope.added = bool;
-      });
-    });
-
-  });
-
-  app.controller('FavouritesController', function($scope, favourites, getComic) {
-    favourites.init();
-
-    $scope.favourites = favourites.data;
-
-    $scope.remove = function (id) {
-        favourites.remove(id);
-        $scope.favourites = favourites.data;
-    };
-
-    $scope.getComic = function (url) {
-      getComic.get(url);
-    };
-  });
-
-})();
-
-(function(){
-  var app = angular.module('home');
-
-  app.factory('favourites', function() {
+angular.module('app')
+  .factory('favourites', function() {
     return {
       data: [],
       init: function () {
@@ -44937,6 +44796,149 @@ $provide.value("$locale", {
     };
   });
 
-})();
+angular.module('app')
+  .factory('getComic', function($http) {
+    var apiKey = "9a0711e83b5b00c91e118c1211e7bdfa";
+
+    return {
+      data: {
+        id: 0,
+        title: "",
+        description: "",
+        image: "",
+        price: 0
+      },
+      get: function (url, callback) {
+        var self = this;
+
+        $http.get(url + "?apikey=" + apiKey).then(function(response, status) {
+          var data = response.data.data;
+
+          self.data.id = data.results[0].id;
+          self.data.title = data.results[0].title;
+          self.data.description = data.results[0].description;
+          self.data.image = data.results[0].thumbnail.path + '.jpg';
+          self.data.price = data.results[0].prices[0].price;
+          self.data.resourceURI = data.results[0].resourceURI;
+
+          angular.element('#view-comics').modal('show');
+        });
+      }
+    };
+  });
+
+angular.module('app')
+  .factory('getCharacters', function(config, $http) {
+
+    return {
+      data: [],
+      get: function (name, callback) {
+        var self = this;
+
+        this.data = [];
+
+        $http.get(config.apiUrl + "characters?nameStartsWith=" + name + "&limit=10&apikey=" + config.apiKey)
+          .then(function(response, status) {
+            var results = response.data.data.results;
+
+            if (results.length) {
+              self.data = results.map(function(value) {
+                return { "id": value.id, "name": value.name, "image": value.thumbnail.path + "." + value.thumbnail.extension };
+              });
+            }
+
+            callback(self.data);
+
+          }, function errorCallback(response) {
+
+            callback(self.data);
+          });
+      }
+    };
+  });
+
+angular.module('app')
+  .controller('SearchController', function ($scope, $timeout, getCharacters) {
+    $scope.results = [];
+    $scope.show = false;
+    $scope.error = false;
+    $scope.timer = null;
+
+    $scope.search = function () {
+      $scope.error = false;
+
+      if ($scope.name.length > 3) {
+
+        if ($scope.timer) $timeout.cancel($scope.timer);
+
+        $scope.timer = $timeout(function () {
+            getCharacters.get($scope.name, function (response) {
+
+              if (response.length) {
+                $scope.results = response;
+              } else {
+                $scope.error = true;
+              }
+
+              $scope.show = true;
+            });
+        }, 250);
+      } else {
+        $scope.results = [];
+      }
+    };
+
+    $scope.showToggle = function (e) {
+      $scope.show = !$scope.show;
+    };
+  });
+
+angular.module('app')
+
+  .controller('CharactersController', function($scope, getComic) {
+
+    $scope.getComic = function (url) {
+      getComic.get(url);
+    };
+  });
+
+angular.module('app')
+
+  .controller('ComicsController', function($scope, getComic, favourites) {
+    $scope.added = false;
+    $scope.comic = getComic.data;
+
+    $scope.addFavourites = function () {
+      if (!$scope.added) {
+        favourites.add($scope.comic, function (bool) {
+          $scope.added = bool;
+        });
+      }
+    };
+
+    angular.element('#view-comics').on('show.bs.modal', function () {
+      favourites.verify($scope.comic, function(bool) {
+        $scope.added = bool;
+      });
+    });
+
+  });
+
+angular.module('app')
+
+  .controller('FavouritesController', function($scope, favourites, getComic) {
+    favourites.init();
+
+    $scope.favourites = favourites.data;
+
+    $scope.remove = function (id) {
+        favourites.remove(id);
+        $scope.favourites = favourites.data;
+    };
+
+    $scope.getComic = function (url) {
+      getComic.get(url);
+    };
+  });
 
 //# sourceMappingURL=app.js.map

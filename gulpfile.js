@@ -26,7 +26,14 @@ elixir(function(mix) {
                 'resources/assets/js/vendor/jquery.js',
                 'resources/assets/js/vendor/bootstrap.js',
                 'resources/assets/js/vendor/angular.js',
-                'resources/assets/js/app.js'
+                'resources/assets/js/app.js',
+                'resources/assets/js/services/favourites.js',
+                'resources/assets/js/services/getComic.js',
+                'resources/assets/js/services/getCharacters.js',
+                'resources/assets/js/controller/search.js',
+                'resources/assets/js/controller/characters.js',
+                'resources/assets/js/controller/comics.js',
+                'resources/assets/js/controller/favourites.js'
             ],
             'public/js/app.js'
         )

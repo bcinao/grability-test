@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="home">
+<html ng-app="app">
   <head>
     <title>Grability Test</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
