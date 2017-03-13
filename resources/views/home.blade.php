@@ -33,7 +33,7 @@
                   <div class="media-body">
                     <h4 class="media-heading name-character"><{ $character['name'] }></h4>
                     <p class="description-character"><{ $character['description'] }></p>
-                    <a href="javascript:void(0);" class="btn btn-primary text-uppercase"><strong>View more</strong></a>
+                    <a href="/character/<{$character['id']}>" class="btn btn-primary text-uppercase"><strong>View more</strong></a>
                   </div>
                 </div>
                 <div class="related-comics">

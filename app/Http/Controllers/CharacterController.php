@@ -114,11 +114,11 @@ class CharacterController extends Controller
         $comics = array();
 
         foreach($result2 as $comic) {
-
           array_push($comics, array(
             "title" => $comic["title"],
             "description" => $comic["description"],
-            "image" => $comic["images"][0]["path"] . "." . $comic["images"][0]["extension"]
+            "image" => $comic["thumbnail"]["path"] . "." . $comic["thumbnail"]["extension"],
+            "resourceURI" => $comic["resourceURI"]
           ));
         }
 

@@ -12,7 +12,7 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <div class="box-character">
+          <div class="box-character" ng-controller="CharactersController as character">
             <div class="image-character" style="background-image: url(<{ $character['image'] }>)"></div>
             <h1><{ $character["name"] }></h1>
             <p class="description-character"><{$character["description"]}></p>
@@ -33,7 +33,7 @@
                           <div class="item <{ $key == 0 ? 'active' : '' }>">
                         @endif
 
-                        <div class="col-xs-2"><a href="javascript:void(0);" ng-click="getComic('')"><img src="<{ $comic['image'] }>" class="img-responsive"></a></div>
+                        <div class="col-xs-2"><a href="javascript:void(0);" ng-click="getComic('<{$comic['resourceURI']}>')"><img src="<{ $comic['image'] }>" class="img-responsive"></a></div>
 
                         @if ($key % 6 == 5 || $key == count($character['comics']) - 1)
                         </div>
