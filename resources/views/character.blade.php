@@ -18,11 +18,17 @@
             <p class="description-character"><{$character["description"]}></p>
             <div class="box-comics">
               <div class="row">
+                <div class="col-md-6">
+                  <h4>Lista de comics</h4>
+                </div>
+                <div class="col-md-6">
+                  <span class="pull-right"><a href="javascript:void(0);">Agregar 3 comics al azar a mi lista de favoritos</a></span>
+                </div>
                 <div class="col-md-12">
                   <div id="carousel-comics" class="carousel slide">
                     <div class="carousel-inner">
                       @foreach($character['comics'] as $key => $comic)
-                        
+
                         @if ($key % 6 == 0)
                           <div class="item <{ $key == 0 ? 'active' : '' }>">
                         @endif
