@@ -111,12 +111,6 @@ class CharacterController extends Controller
         $result1 = json_decode($response1->getBody()->getContents(), true)["data"]["results"][0];
         $result2 = json_decode($response2->getBody()->getContents(), true)["data"]["results"];
 
-        /*
-        echo "<pre>";
-        print_r($result1);
-        echo "</pre>";
-        */
-        
         $comics = array();
 
         foreach($result2 as $comic) {
@@ -124,7 +118,7 @@ class CharacterController extends Controller
           array_push($comics, array(
             "title" => $comic["title"],
             "description" => $comic["description"],
-          //  "image" => $comic[0]["images"]["path"] . "." . $comic[0]["images"]["extension"]
+            "image" => $comic["images"][0]["path"] . "." . $comic["images"][0]["extension"]
           ));
         }
 

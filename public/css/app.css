@@ -7873,4 +7873,20 @@ footer {
         text-align: center;
         height: 60px; }
 
+.box-character {
+  padding: 15px; }
+  .box-character .image-character {
+    width: 100%;
+    height: 450px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; }
+  .box-character h1 {
+    font-size: 45px;
+    color: #3d3334; }
+  .box-character .description-character {
+    font-size: 16px; }
+  .box-character #carousel-comics .carousel-control {
+    width: 50px; }
+
 /*# sourceMappingURL=app.css.map */

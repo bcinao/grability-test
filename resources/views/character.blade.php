@@ -6,14 +6,43 @@
   <div class="row row-eq-height-md">
     <div class="col-md-9">
       <div class="row row-align padding-small">
-        <div class="col-xs-6">
+        <div class="col-xs-12">
           <h2 class="pull-left title title-characters"><strong>Characters</strong></h2>
         </div>
-        <div class="col-xs-6">
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box-character">
+            <div class="image-character" style="background-image: url(<{ $character['image'] }>)"></div>
+            <h1><{ $character["name"] }></h1>
+            <p class="description-character"><{$character["description"]}></p>
+            <div class="box-comics">
+              <div class="row">
+                <div class="col-md-12">
+                  <div id="carousel-comics" class="carousel slide">
+                    <div class="carousel-inner">
+                      @foreach($character['comics'] as $key => $comic)
+                        
+                        @if ($key % 6 == 0)
+                          <div class="item <{ $key == 0 ? 'active' : '' }>">
+                        @endif
 
+                        <div class="col-xs-2"><a href="javascript:void(0);" ng-click="getComic('')"><img src="<{ $comic['image'] }>" class="img-responsive"></a></div>
+
+                        @if ($key % 6 == 5 || $key == count($character['comics']) - 1)
+                        </div>
+                        @endif
+                      @endforeach
+                    </div>
+                    <a class="left carousel-control" href="#carousel-comics" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                    <a class="right carousel-control" href="#carousel-comics" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
     <div class="col-md-3 bar-favourites">
       <div class="list-favourites" ng-controller="FavouritesController as favourites">
