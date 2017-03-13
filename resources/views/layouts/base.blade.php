@@ -3,14 +3,14 @@
   <head>
     <title>Grability Test</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-    <link href="css/app.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
   </head>
   <body>
 
     <header>
       <div class="container-fluid">
         <div class="row">
-          <a href="/" class="navbar-brand"><img src="img/logo.jpg" class="logo img-responsive" alt="" /></a>
+          <a href="/" class="navbar-brand"><img src="/img/logo.jpg" class="logo img-responsive" alt="" /></a>
           <div class="col-xs-7 col-md-6 col-center pull-right-sm">
             <div class="box-search" ng-controller="SearchController as search">
               <div class="dropdown" ng-class="{ 'open': show }">
@@ -35,10 +35,10 @@
       <div class="row row-align">
         <div class="col-xs-8">Grability 2016 - Todos los derechos reservados</div>
         <div class="col-xs-4">
-          <img src="img/grability-logo.png" class="img-responsive pull-right" />
+          <img src="/img/grability-logo.png" class="img-responsive pull-right" />
         </div>
       </div>
     </footer>
-    <script src="js/app.js"></script>
+    <script src="/js/app.js"></script>
   </body>
 </html>

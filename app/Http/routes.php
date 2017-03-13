@@ -14,3 +14,4 @@ Blade::setContentTags('<{', '}>');
 Blade::setEscapedContentTags('<{{', '}}>');
 
 Route::get('/', 'CharacterController@index');
+Route::get('/character/{id}', 'CharacterController@show');

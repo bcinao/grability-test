@@ -88,7 +88,55 @@ class CharacterController extends Controller
      */
     public function show($id)
     {
-        //
+      $ts = time();
+      $publicKey = env('APP_KEY');
+      $privateKey = env('APP_KEY_PRIVATE');
+      $hash = md5($ts . $privateKey . $publicKey);
+
+      $params = [
+        "ts" => $ts,
+        "apikey" => $publicKey,
+        "hash" => $hash
+      ];
+
+      $client = new Client([ 'base_uri' => 'http://gateway.marvel.com/v1/public/', 'timeout'  => 2.0 ]);
+      $response1 = $client->get("characters/$id", ["query" => $params]);
+      $response2 = $client->get("characters/$id/comics", ["query" => $params]);
+
+      $code1 = $response1->getStatusCode();
+      $code2 = $response2->getStatusCode();
+
+      if ($code1 == 200 && $code2 == 200) {
+
+        $result1 = json_decode($response1->getBody()->getContents(), true)["data"]["results"][0];
+        $result2 = json_decode($response2->getBody()->getContents(), true)["data"]["results"];
+
+        /*
+        echo "<pre>";
+        print_r($result1);
+        echo "</pre>";
+        */
+        
+        $comics = array();
+
+        foreach($result2 as $comic) {
+
+          array_push($comics, array(
+            "title" => $comic["title"],
+            "description" => $comic["description"],
+          //  "image" => $comic[0]["images"]["path"] . "." . $comic[0]["images"]["extension"]
+          ));
+        }
+
+        $character = array(
+          "name" => $result1["name"],
+          "description" => $result1["description"],
+          "image" => $result1["thumbnail"]["path"] . "." . $result1["thumbnail"]["extension"],
+          "comics" => $comics
+        );
+
+        return view('character')->with(['character' => $character]);
+      }
     }
 
     /**
